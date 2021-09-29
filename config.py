@@ -4,7 +4,7 @@ import os
 class Config:
   SQLALCHEMY_TRACK_MODIFICATIONS=True
   SECRET_KEY = os.environ.get('SECRET_KEY')
-  SQLALCHEMY_DATABASE_URI= 'postgresql+psycopg2://access:lawioti@localhost/somaonline'
+  SQLALCHEMY_DATABASE_URI= 'postgresql+psycopg2://access:lawioti@localhost/somaonlinee'
   
 
 class ProdConfig(Config):
