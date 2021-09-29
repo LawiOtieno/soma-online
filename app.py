@@ -89,6 +89,26 @@ def get_all_users():
         output.append(user_data)
     return jsonify({'users' : output})
 
+## Getting Single User
+@app.route('/user/<public_id>', methods=['GET'])
+# @token_required
+def get_one_user(public_id):
+    
+    # # Give user authentication to update the content
+    # if not current_user.admin:
+    #     return jsonify({'message': "You cannot perform that action"})
+
+    user=User.query.filter_by(public_id=public_id).first()
+
+    if not user:
+        return jsonify({'message' :'No user found with that name'})
+    user_data={}
+    user_data['public_id']=user.public_id
+    user_data['name']=user.name
+    user_data['password']=user.password
+    user_data['admin']=user.admin    
+    return jsonify({'user': user_data})    
+
 
 
 
