@@ -11,6 +11,15 @@ from functools import wraps
 
 app = Flask(__name__)
 
+app.config['SECRET_KEY'] = '1234LAME'
+app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://access:lawioti@localhost/somaonline'
+
+db = SQLAlchemy(app)
+
+
+# ======================================= Users Code By Melvin =======================================
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
