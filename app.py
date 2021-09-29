@@ -68,6 +68,28 @@ def login():
 
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login Required"'})    
 
+## Getting All Users
+@app.route('/user', methods=['GET'])
+# @token_required  
+def get_all_users():
+    
+    # # Give users authentication to update the content
+    # if not current_user.admin:
+    #     return jsonify({'message': "You cannot perform that action"})
+
+
+    users = User.query.all()
+    output = []
+    for user in users:
+        user_data ={}
+        user_data['public_id']=user.public_id
+        user_data['name']=user.name
+        user_data['password']=user.password
+        user_data['admin']=user.admin
+        output.append(user_data)
+    return jsonify({'users' : output})
+
+
 
 
 if __name__ == '__main__':
