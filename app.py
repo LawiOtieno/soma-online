@@ -126,7 +126,27 @@ def create_user():
     db.session.add(new_user)
     db.session.commit()
 
-    return jsonify({"message" : "New user created successfully!"})     
+    return jsonify({"message" : "New user created successfully!"})   
+
+## Update/Promote/Put User
+@app.route('/user/<public_id>', methods=['PUT'])
+# @token_required
+def promote_user(public_id):
+
+    # # Give user authentication to update the content
+    # if not current_user.admin:
+    #     return jsonify({'message': "You cannot perform that action"})
+
+    user=User.query.filter_by(public_id=public_id).first()
+
+    if not user:
+        return jsonify({'message' :'No user found'})
+    
+    user.admin=True
+    db.session.commit()   
+    
+    return jsonify({'message': 'The user has been promoted to Admin'})
+
 
 
 
