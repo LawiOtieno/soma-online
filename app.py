@@ -50,6 +50,24 @@ def token_required(f):
         return  f(current_user, *args , **kwargs)  
     return decorated
 
+## User login
+@app.route('/login')
+def login():
+    auth=request.authorization
+
+    if not auth or not auth.username or not auth.password:
+        return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login Required"'})
+    user=User.query.filter_by(name=auth.username).first()
+
+    if not user:
+        return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login Required"'})
+    if check_password_hash(user.password, auth.password):
+        token= jwt.encode({'public_id' : user.public_id, 'exp' : datetime.datetime.utcnow() + datetime.timedelta(minutes=20)}, app.config['SECRET_KEY'])
+
+        return jsonify({'token': token})
+
+    return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login Required"'})    
+
 
 
 if __name__ == '__main__':
