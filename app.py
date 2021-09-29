@@ -196,21 +196,21 @@ def get_all_books():
     return jsonify({'books' : output})
 
 
-# ## Getting Single book
-# @app.route('/book/<book_title>', methods=['GET'])
-# def get_one_book(book_title):
+## Getting Single book
+@app.route('/book/<book_title>', methods=['GET'])
+def get_one_book(book_title):
 
-#     book=Book.query.filter_by(book_title=book_title).first()
+    book=Book.query.filter_by(book_title=book_title).first()
 
-#     if not book:
-#         return jsonify({'message' :'No book found with that name'})
+    if not book:
+        return jsonify({'message' :'No book found with that name'})
 
-#     book_data={}
-#     book_data['book_title']=book.book_title
-#     book_data['book_author']=book.book_author
-#     book_data['publisher']=book.publisher
+    book_data={}
+    book_data['book_title']=book.book_title
+    book_data['book_author']=book.book_author
+    book_data['publisher']=book.publisher
 
-#     return jsonify({'book': book_data})
+    return jsonify({'book': book_data})
 
 # ## Create Single Book
 # @app.route('/book/', methods=['POST'])
