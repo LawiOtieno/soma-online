@@ -169,6 +169,90 @@ def delete_user( public_id):
 
 
 
+# ======================================= Books Code By Lawrence =======================================
+
+#book_title, book_author, publisher
+class Book(db.Model):
+    id=db.Column(db.Integer, primary_key=True)
+    book_title=db.Column(db.String(300), unique=True)
+    book_author=db.Column(db.String(100))
+    publisher=db.Column(db.String(100))
+
+
+
+# ## Getting All Books
+# @app.route('/books', methods=['GET'])
+# def get_all_books():
+#     books = Book.query.all()
+#     output = []
+#     for book in books:
+#         book_data ={}
+#         book_data['book_title']=book.book_title
+#         book_data['book_author']=book.book_author
+#         book_data['publisher']=book.publisher
+
+#         output.append(book_data)
+
+#     return jsonify({'books' : output})
+
+
+# ## Getting Single book
+# @app.route('/book/<book_title>', methods=['GET'])
+# def get_one_book(book_title):
+
+#     book=Book.query.filter_by(book_title=book_title).first()
+
+#     if not book:
+#         return jsonify({'message' :'No book found with that name'})
+
+#     book_data={}
+#     book_data['book_title']=book.book_title
+#     book_data['book_author']=book.book_author
+#     book_data['publisher']=book.publisher
+
+#     return jsonify({'book': book_data})
+
+# ## Create Single Book
+# @app.route('/book/', methods=['POST'])
+# def create_book():
+
+#     data=request.get_json()
+
+#     new_book=Book(book_title=data['book_title'], book_author=data['book_author'],publisher=data['publisher'])
+
+#     db.session.add(new_book)
+#     db.session.commit()
+
+#     return jsonify({"message" : "New book  created successfully!"})
+
+
+# ## Update/Promote/Put Single Book
+# @app.route('/book/<book_title>', methods=['PUT'])
+# def promote_book(book_title):
+#     book=Book.query.filter_by(book_title=book_title).first()
+
+#     if not book:
+#         return jsonify({'message' :'No book found'})
+
+#     book.admin=True
+#     db.session.commit()
+
+#     return jsonify({'message': 'The book has been promoted to be the most trending book '})
+
+# ## Delete Single Book
+# @app.route('/book/<book_title>', methods=['DELETE'])  
+# def delete_book(book_title):
+
+#     book=Book.query.filter_by(book_title=book_title).first()
+
+#     if not book:
+#         return jsonify({'message' :'No book  found'})
+
+#     db.session.delete(book)
+#     db.session.commit()
+
+#     return jsonify({'message': 'The book has been deleted successfully'})
+
 
 if __name__ == '__main__':
     app.run(debug=True)
