@@ -180,20 +180,20 @@ class Book(db.Model):
 
 
 
-# ## Getting All Books
-# @app.route('/books', methods=['GET'])
-# def get_all_books():
-#     books = Book.query.all()
-#     output = []
-#     for book in books:
-#         book_data ={}
-#         book_data['book_title']=book.book_title
-#         book_data['book_author']=book.book_author
-#         book_data['publisher']=book.publisher
+## Getting All Books
+@app.route('/books', methods=['GET'])
+def get_all_books():
+    books = Book.query.all()
+    output = []
+    for book in books:
+        book_data ={}
+        book_data['book_title']=book.book_title
+        book_data['book_author']=book.book_author
+        book_data['publisher']=book.publisher
 
-#         output.append(book_data)
+        output.append(book_data)
 
-#     return jsonify({'books' : output})
+    return jsonify({'books' : output})
 
 
 # ## Getting Single book
