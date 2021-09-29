@@ -239,19 +239,19 @@ def promote_book(book_title):
 
     return jsonify({'message': 'The book has been promoted to be the most trending book '})
 
-# ## Delete Single Book
-# @app.route('/book/<book_title>', methods=['DELETE'])  
-# def delete_book(book_title):
+## Delete Single Book
+@app.route('/book/<book_title>', methods=['DELETE'])  
+def delete_book(book_title):
 
-#     book=Book.query.filter_by(book_title=book_title).first()
+    book=Book.query.filter_by(book_title=book_title).first()
 
-#     if not book:
-#         return jsonify({'message' :'No book  found'})
+    if not book:
+        return jsonify({'message' :'No book  found'})
 
-#     db.session.delete(book)
-#     db.session.commit()
+    db.session.delete(book)
+    db.session.commit()
 
-#     return jsonify({'message': 'The book has been deleted successfully'})
+    return jsonify({'message': 'The book has been deleted successfully'})
 
 
 if __name__ == '__main__':
