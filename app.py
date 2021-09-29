@@ -14,10 +14,19 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = '1234LAME'
 app.config['SQLALCHEMY_DATABASE_URI']= 'postgresql+psycopg2://access:lawioti@localhost/somaonline'
 
+
 db = SQLAlchemy(app)
 
 
 # ======================================= Users Code By Melvin =======================================
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    public_id = db.Column(db.String(50), unique=True)
+    name = db.Column(db.String(100))
+    password = db.Column(db.String(100))
+    admin = db.Column(db.Boolean)
+
 
 
 
