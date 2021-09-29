@@ -226,18 +226,18 @@ def create_book():
     return jsonify({"message" : "New book  created successfully!"})
 
 
-# ## Update/Promote/Put Single Book
-# @app.route('/book/<book_title>', methods=['PUT'])
-# def promote_book(book_title):
-#     book=Book.query.filter_by(book_title=book_title).first()
+## Update/Promote/Put Single Book
+@app.route('/book/<book_title>', methods=['PUT'])
+def promote_book(book_title):
+    book=Book.query.filter_by(book_title=book_title).first()
 
-#     if not book:
-#         return jsonify({'message' :'No book found'})
+    if not book:
+        return jsonify({'message' :'No book found'})
 
-#     book.admin=True
-#     db.session.commit()
+    book.admin=True
+    db.session.commit()
 
-#     return jsonify({'message': 'The book has been promoted to be the most trending book '})
+    return jsonify({'message': 'The book has been promoted to be the most trending book '})
 
 # ## Delete Single Book
 # @app.route('/book/<book_title>', methods=['DELETE'])  
