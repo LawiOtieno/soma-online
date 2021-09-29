@@ -122,7 +122,7 @@ def promote_user(public_id):
     user.admin=True
     db.session.commit()
 
-    return jsonify({'message': 'The user has been promoted1 to Admin'})
+    return jsonify({'message': 'User has been promoted to admin'})
 
 
 ## Delete Single User
