@@ -212,18 +212,18 @@ def get_one_book(book_title):
 
     return jsonify({'book': book_data})
 
-# ## Create Single Book
-# @app.route('/book/', methods=['POST'])
-# def create_book():
+## Create Single Book
+@app.route('/book/', methods=['POST'])
+def create_book():
 
-#     data=request.get_json()
+    data=request.get_json()
 
-#     new_book=Book(book_title=data['book_title'], book_author=data['book_author'],publisher=data['publisher'])
+    new_book=Book(book_title=data['book_title'], book_author=data['book_author'],publisher=data['publisher'])
 
-#     db.session.add(new_book)
-#     db.session.commit()
+    db.session.add(new_book)
+    db.session.commit()
 
-#     return jsonify({"message" : "New book  created successfully!"})
+    return jsonify({"message" : "New book  created successfully!"})
 
 
 # ## Update/Promote/Put Single Book
