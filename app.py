@@ -107,7 +107,26 @@ def get_one_user(public_id):
     user_data['name']=user.name
     user_data['password']=user.password
     user_data['admin']=user.admin    
-    return jsonify({'user': user_data})    
+    return jsonify({'user': user_data})   
+
+## Create User
+@app.route('/user', methods=['POST'])
+# @token_required
+def create_user():
+    
+    # # Give user authentication to update the content
+    # if not current_user.admin:
+    #     return jsonify({'message': "You cannot perform that action"})
+    
+    data=request.get_json()
+
+    hashed_password=generate_password_hash(data['password'], method='sha256')
+
+    new_user=User(public_id=str(uuid.uuid4()), name=data['name'], password=hashed_password, admin=False)
+    db.session.add(new_user)
+    db.session.commit()
+
+    return jsonify({"message" : "New user created successfully!"})     
 
 
 
